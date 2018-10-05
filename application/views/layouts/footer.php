@@ -1,5 +1,5 @@
         <footer class="main-footer">
-            
+
         </footer>
     </div>
     <!-- ./wrapper -->
@@ -45,7 +45,7 @@ $(document).ready(function () {
         });
     });
     $(".btn-view-producto").on("click", function(){
-        var producto = $(this).val(); 
+        var producto = $(this).val();
         //alert(cliente);
         var infoproducto = producto.split("*");
         html = "<p><strong>Codigo: </strong>"+infoproducto[1]+"</p>"
@@ -60,9 +60,9 @@ $(document).ready(function () {
         html += "<p><strong>Total: </strong>"+(total)+"</p>"
         $("#modal-default .modal-body").html(html);
     });
-  
+
     $(".btn-view-cliente").on("click", function(){
-        var cliente = $(this).val(); 
+        var cliente = $(this).val();
         //alert(cliente);
         var infocliente = cliente.split("*");
         html = "<p><strong>Nombre:</strong>"+infocliente[1]+"</p>"
@@ -73,6 +73,7 @@ $(document).ready(function () {
         html += "<p><strong>Direccion:</strong>"+infocliente[6]+"</p>"
         $("#modal-default .modal-body").html(html);
     });
+
     $(".btn-view").on("click", function(){
         var id = $(this).val();
         $.ajax({
@@ -86,6 +87,21 @@ $(document).ready(function () {
         });
 
     });
+
+    $(".btn-view-usuario").on("click", function(){
+        var id = $(this).val();
+        $.ajax({
+            url: base_url + "administrador/usuarios/view",
+            type:"POST",
+            data:{idusuario:id},
+            success:function(resp){
+                $("#modal-default .modal-body").html(resp);
+            }
+
+        });
+
+    });
+
     $('#example').DataTable( {
         dom: 'Bfrtip',
         buttons: [
@@ -102,7 +118,7 @@ $(document).ready(function () {
                 exportOptions: {
                     columns: [ 0, 1,2, 3, 4, 5 ]
                 }
-                
+
             }
         ],
 
@@ -122,7 +138,7 @@ $(document).ready(function () {
             },
         }
     });
- 
+
 	$('#example1').DataTable({
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por pagina",
@@ -149,7 +165,7 @@ $(document).ready(function () {
             infocomprobante = option.split("*");
 
             $("#idcomprobante").val(infocomprobante[0]);
-            
+
             $("#serie").val(infocomprobante[2]);
             $("#numero").val(generarnumero(infocomprobante[1]));
         }
