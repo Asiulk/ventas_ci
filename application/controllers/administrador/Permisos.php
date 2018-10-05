@@ -10,7 +10,7 @@ class Permisos extends CI_Controller {
 
   public function index(){
     $data  = array(
-      'permisos' => $this->Permisos_model->getPermisos(),
+    //  'permisos' => $this->Permisos_model->getPermisos(),
     );
     $this->load->view("layouts/header");
     $this->load->view("layouts/aside");
