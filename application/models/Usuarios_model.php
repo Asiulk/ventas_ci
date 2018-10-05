@@ -43,4 +43,9 @@ class Usuarios_model extends CI_Model {
 			return false;
 		}
 	}
+
+	public function update($id,$data){
+		$this->db->where("id",$id);
+		return $this->db->update("usuarios",$data);
+	}
 }

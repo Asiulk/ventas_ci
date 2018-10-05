@@ -61,6 +61,8 @@
                         <ul class="treeview-menu">
                             <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Tipo Documentos</a></li>
                             <li><a href="<?php echo base_url();?>administrador/usuarios"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+                            <li><a href="<?php echo base_url();?>administrador/permisos"><i class="fa fa-circle-o"></i> Permisos</a></li>
+
                         </ul>
                     </li>
                 </ul>
