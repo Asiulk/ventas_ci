@@ -1,3 +1,3 @@
 <?php
-echo "Ya te podes acostar";
+echo "Ya";
  ?>
