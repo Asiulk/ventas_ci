@@ -15,7 +15,7 @@ class Ventas extends CI_Controller {
 
 	public function index(){
 		$data  = array(
-			'ventas' => $this->Ventas_model->getVentas(), 
+			'ventas' => $this->Ventas_model->getVentas(),
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
@@ -84,15 +84,15 @@ class Ventas extends CI_Controller {
 	protected function updateComprobante($idcomprobante){
 		$comprobanteActual = $this->Ventas_model->getComprobante($idcomprobante);
 		$data  = array(
-			'cantidad' => $comprobanteActual->cantidad + 1, 
+			'cantidad' => $comprobanteActual->cantidad + 1,
 		);
 		$this->Ventas_model->updateComprobante($idcomprobante,$data);
 	}
 
 	protected function save_detalle($productos,$idventa,$precios,$cantidades,$importes){
-		for ($i=0; $i < count($productos); $i++) { 
+		for ($i=0; $i < count($productos); $i++) {
 			$data  = array(
-				'producto_id' => $productos[$i], 
+				'producto_id' => $productos[$i],
 				'venta_id' => $idventa,
 				'precio' => $precios[$i],
 				'cantidad' => $cantidades[$i],
@@ -108,7 +108,7 @@ class Ventas extends CI_Controller {
 	protected function updateProducto($idproducto,$cantidad){
 		$productoActual = $this->Productos_model->getProducto($idproducto);
 		$data = array(
-			'stock' => $productoActual->stock - $cantidad, 
+			'stock' => $productoActual->stock - $cantidad,
 		);
 		$this->Productos_model->update($idproducto,$data);
 	}

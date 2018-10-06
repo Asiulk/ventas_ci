@@ -45,12 +45,8 @@
 					<td><?php echo $detalle->nombre;?></td>
 					<td><?php echo $detalle->precio;?></td>
 					<td><?php echo $detalle->cantidad;?></td>
-
 					<td><?php echo $detalle->precio*$detalle->cantidad;?></td>
-					<?php //aqui toca la condicion ?>
-
 					<td><?php echo ($detalle->precio*$detalle->cantidad)*($detalle->igv/100);?></td>
-
 					<td><?php echo $detalle->importe;?></td>
 				</tr>
 				<?php endforeach;?>
