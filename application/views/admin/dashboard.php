@@ -10,7 +10,8 @@
                 <small>Editar</small>
                 </h1>
             </section>
-            <!-- Ma            <section class="content">
+            <!-- Main content -->
+            <section class="content">
                 <!-- Default box -->
                 <div class="box box-solid">
                     <div class="box-body">
