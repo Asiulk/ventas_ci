@@ -4,7 +4,7 @@
     <section class="content-header">
         <h1>
         Permisos
-        <small>Nuevo</small>
+        <small>Editar</small>
         </h1>
     </section>
     <!-- Main content -->
@@ -20,22 +20,26 @@
                                 <p><i class="icon fa fa-ban"></i><?php echo $this->session->flashdata("error"); ?></p>
                             </div>
                         <?php endif;?>
-                        <form action="<?php echo base_url();?>administrador/permisos/store" method="POST">
-
+                        <form action="<?php echo base_url();?>administrador/permisos/update" method="POST">
+                          <input type="hidden" name="idpermiso" value="<?php echo $permiso->id; ?>">
                           <div class="form-group">
                               <label for="rol">Roles:</label>
-                              <select class="form-control" name="rol" id="rol">
+                              <select class="form-control" name="rol" id="rol" disabled="disable">
                                 <?php foreach ($roles as $rol):?>
-                                  <option value="<?php echo $rol->id;?>"><?php echo $rol->nombre;?></option>
+                                  <option value="<?php echo $rol->id;?>"
+                                    <?php echo $rol->id == $permiso->rol_id ? "selected":"";?>>
+                                    <?php echo $rol->nombre;?></option>
                                 <?php endforeach ?>
                               </select>
                           </div>
 
                           <div class="form-group">
                               <label for="menu">Menus:</label>
-                              <select class="form-control" name="menu" id="menu">
+                              <select class="form-control" name="menu" id="menu" disabled="disabled">
                                 <?php foreach ($menus as $menu):?>
-                                  <option value="<?php echo $menu->id;?>"><?php echo $menu->nombre;?></option>
+                                  <option value="<?php echo $menu->id;?>"
+                                    <?php echo $menu->id == $permiso->menu_id ? "selected":"";?>>
+                                    <?php echo $menu->nombre;?></option>
                                 <?php endforeach ?>
                               </select>
                           </div>
@@ -43,40 +47,40 @@
                           <div class="form-group">
                               <label for="read">Visualizar:</label>
                               <label class="radio-inline">
-                                <input type="radio" name="read" value="1" checked="checked">Si
+                                <input type="radio" name="read" value="1" <?php echo $permiso->read == 1 ? "checked":""; ?>>Si
                               </label>
                               <label class="radio-inline">
-                                <input type="radio" name="read" value="0">No
+                                <input type="radio" name="read" value="0" <?php echo $permiso->read == 0 ? "checked":""; ?>>No
                               </label>
                           </div>
 
                           <div class="form-group">
                               <label for="read">Agregar:</label>
                               <label class="radio-inline">
-                                <input type="radio" name="insert" value="1" checked="checked">Si
+                                <input type="radio" name="insert" value="1" <?php echo $permiso->insert == 1 ? "checked":""; ?>>Si
                               </label>
                               <label class="radio-inline">
-                                <input type="radio" name="insert" value="0">No
+                                <input type="radio" name="insert" value="0" <?php echo $permiso->insert == 0 ? "checked":""; ?>>No
                               </label>
                           </div>
 
                           <div class="form-group">
                               <label for="read">Actualizar:</label>
                               <label class="radio-inline">
-                                <input type="radio" name="update" value="1" checked="checked">Si
+                                <input type="radio" name="update" value="1" <?php echo $permiso->update == 1 ? "checked":""; ?>>Si
                               </label>
                               <label class="radio-inline">
-                                <input type="radio" name="update" value="0">No
+                                <input type="radio" name="update" value="0" <?php echo $permiso->update == 0 ? "checked":""; ?>>No
                               </label>
                           </div>
 
                           <div class="form-group">
                               <label for="read">Eliminar:</label>
                               <label class="radio-inline">
-                                <input type="radio" name="delete" value="1" checked="checked">Si
+                                <input type="radio" name="delete" value="1" <?php echo $permiso->delete == 1 ? "checked":""; ?>>Si
                               </label>
                               <label class="radio-inline">
-                                <input type="radio" name="delete" value="0">No
+                                <input type="radio" name="delete" value="0" <?php echo $permiso->delete == 0 ? "checked":""; ?>>No
                               </label>
                           </div>
 
