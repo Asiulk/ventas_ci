@@ -3,9 +3,13 @@
         </footer>
     </div>
     <!-- ./wrapper -->
+
 <!-- jQuery 3 -->
 <script src="<?php echo base_url();?>assets/template/jquery/jquery.min.js"></script>
 <script src="<?php echo base_url();?>assets/template/jquery-print/jquery.print.js"></script>
+<!-- Highcharts -->
+<script src="<?php echo base_url();?>assets/template/highcharts/highcharts.js"></script>
+<script src="<?php echo base_url();?>assets/template/highcharts/exporting.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url();?>assets/template/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url();?>assets/template/jquery-ui/jquery-ui.js"></script>
@@ -31,6 +35,12 @@
 <script>
 $(document).ready(function () {
     var base_url= "<?php echo base_url();?>";
+    var year = (new Date).getFullYear();
+    datagrafico(base_url,year);
+    $("#year").on("change",function(){
+      yearselect = $(this).val();
+      datagrafico(base_url,yearselect);
+    });
     $(".btn-remove").on("click", function(e){
         e.preventDefault();
         var ruta = $(this).attr("href");
@@ -304,6 +314,70 @@ function sumar(){
     $("input[name=igv]").val(igv.toFixed(2));
     total = subtotal + igv;
     $("input[name=total]").val(total.toFixed(2));
+    }
+    //datagrafico(base_url);
+
+    function datagrafico(base_url,year){
+      namesMonth= ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+      $.ajax({
+        url: base_url + "dashboard/getData",
+        type: "POST",
+        data:{year: year},
+        dataType:"json",
+        success:function(data){
+          var meses = new Array();
+          var montos = new Array();
+          $.each(data,function(key, value){
+            meses.push(namesMonth[value.mes -1]);
+            valor = Number(value.monto);
+            montos.push(valor);
+          });
+          graficar(meses,montos,year);
+        }
+      });
+    }
+
+    function graficar(meses,montos,year){
+      Highcharts.chart('grafico', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Monto acumulado de ventas por mes'
+        },
+        subtitle: {
+            text: 'Año: ' + year
+        },
+        xAxis: {
+            categories: meses,
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Monto acumulado (Pesos)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">Monto: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} pesos</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Meses',
+            data: montos,
+
+        }, ]
+      });
     }
 </script>
 </body>

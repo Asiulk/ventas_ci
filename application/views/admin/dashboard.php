@@ -6,8 +6,8 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                Categoria
-                <small>Editar</small>
+                Inicio
+                <small>Reportes</small>
                 </h1>
             </section>
             <!-- Main content -->
@@ -17,14 +17,14 @@
                     <!-- small box -->
                     <div class="small-box bg-aqua">
                         <div class="inner">
-                            <h3>150</h3>
+                            <h3><?php echo $cantClientes; ?></h3>
 
-                            <p>New Orders</p>
+                            <p>Clientes</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url(); ?>mantenimiento/clientes" class="small-box-footer">Ver Clientes <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -32,14 +32,14 @@
                     <!-- small box -->
                     <div class="small-box bg-green">
                         <div class="inner">
-                            <h3>53<sup style="font-size: 20px">%</sup></h3>
+                            <h3><?php echo $cantProductos; ?></h3>
 
-                            <p>Bounce Rate</p>
+                            <p>Productos</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url(); ?>mantenimiento/productos" class="small-box-footer">Ver Productos <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -47,14 +47,14 @@
                     <!-- small box -->
                     <div class="small-box bg-yellow">
                         <div class="inner">
-                            <h3>44</h3>
+                            <h3><?php echo $cantUsuarios; ?></h3>
 
-                            <p>User Registrations</p>
+                            <p>Usuarios</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url(); ?>administrador/usuarios" class="small-box-footer">Ver Usuarios<i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -62,14 +62,14 @@
                     <!-- small box -->
                     <div class="small-box bg-red">
                         <div class="inner">
-                            <h3>65</h3>
+                            <h3><?php echo $cantVentas; ?></h3>
 
-                            <p>Unique Visitors</p>
+                            <p>Ventas</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url(); ?>movimientos/ventas" class="small-box-footer">Ver Ventas <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -80,19 +80,22 @@
                 <div class="col-md-12">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Monthly Recap Report</h3>
+                            <h3 class="box-title">Reporte de ventas</h3>
 
                             <div class="box-tools pull-right">
-
+                              <select id="year" name="year" class="form-control">
+                                <?php foreach ($years as $year):?>
+                                  <option value="<?php echo $year->year; ?>"><?php echo $year->year; ?></option>
+                                <?php endforeach ?>
+                              </select>
                             </div>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div id="grafico">
 
-                                    </div>
+                                    <div id="grafico" style="margin: 0 auto"></div>
                                 </div>
                             </div>
                             <!-- /.row -->
