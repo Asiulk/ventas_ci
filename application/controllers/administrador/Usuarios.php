@@ -110,7 +110,7 @@ class Usuarios extends CI_Controller {
           'telefono' => $telefono,
           'email' => $email,
           'username' => $username,
-          'rol_id' => $rol,
+          'rol_id' => $rol
 
   			);
 

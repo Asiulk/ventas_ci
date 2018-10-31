@@ -3,16 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Categorias extends CI_Controller {
 
+	private $permisos;
+
 	public function __construct(){
 		parent::__construct();
+		$this->permisos = $this->backend_lib->control();
 		$this->load->model("Categorias_model");
 	}
 
-	
+
 	public function index()
 	{
 		$data  = array(
-			'categorias' => $this->Categorias_model->getCategorias(), 
+			'permisos' => $this->permisos,
+			'categorias' => $this->Categorias_model->getCategorias(),
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
@@ -39,7 +43,7 @@ class Categorias extends CI_Controller {
 		if ($this->form_validation->run()==TRUE) {
 
 			$data  = array(
-				'nombre' => $nombre, 
+				'nombre' => $nombre,
 				'descripcion' => $descripcion,
 				'estado' => "1"
 			);
@@ -57,12 +61,12 @@ class Categorias extends CI_Controller {
 			$this->add();
 		}
 
-		
+
 	}
 
 	public function edit($id){
 		$data  = array(
-			'categoria' => $this->Categorias_model->getCategoria($id), 
+			'categoria' => $this->Categorias_model->getCategoria($id),
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
@@ -88,7 +92,7 @@ class Categorias extends CI_Controller {
 		$this->form_validation->set_rules("nombre","Nombre","required".$is_unique);
 		if ($this->form_validation->run()==TRUE) {
 			$data = array(
-				'nombre' => $nombre, 
+				'nombre' => $nombre,
 				'descripcion' => $descripcion,
 			);
 
@@ -103,19 +107,19 @@ class Categorias extends CI_Controller {
 			$this->edit($idCategoria);
 		}
 
-		
+
 	}
 
 	public function view($id){
 		$data  = array(
-			'categoria' => $this->Categorias_model->getCategoria($id), 
+			'categoria' => $this->Categorias_model->getCategoria($id),
 		);
 		$this->load->view("admin/categorias/view",$data);
 	}
 
 	public function delete($id){
 		$data  = array(
-			'estado' => "0", 
+			'estado' => "0",
 		);
 		$this->Categorias_model->update($id,$data);
 		echo "mantenimiento/categorias";
