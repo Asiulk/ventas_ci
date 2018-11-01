@@ -15,7 +15,7 @@
               <div class="row">
                 <div class="col-lg-3 col-xs-6">
                     <!-- small box -->
-                    <div class="small-box bg-gray">
+                    <div class="small-box bg-blue">
                         <div class="inner">
                             <h3><?php echo $cantClientes; ?></h3>
 

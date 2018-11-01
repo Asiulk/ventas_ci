@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2018 a las 17:37:13
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.11
+-- Tiempo de generación: 01-11-2018 a las 20:51:01
+-- Versión del servidor: 10.1.34-MariaDB
+-- Versión de PHP: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -66,7 +66,8 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`id`, `nombre`, `telefono`, `direccion`, `tipo_cliente_id`, `tipo_documento_id`, `num_documento`, `estado`) VALUES
 (1, 'Daniel Morales Restrepo', '654321', 'apartado', 1, 1, '123456', 1),
-(2, 'Estiben Alexander Licona', '3145847896', 'Chadai', 1, 1, '1028030389', 1);
+(2, 'Estiben Alexander Licona', '3145847896', 'Chadai', 1, 1, '1028030389', 1),
+(3, 'Andres Osorio', '3003719293', 'apartado', 1, 1, '10330316', 1);
 
 -- --------------------------------------------------------
 
@@ -152,19 +153,21 @@ INSERT INTO `permisos` (`id`, `menu_id`, `rol_id`, `read`, `insert`, `update`, `
 (1, 1, 1, 1, 1, 1, 1),
 (3, 2, 1, 1, 1, 1, 1),
 (4, 3, 1, 1, 1, 1, 1),
-(5, 5, 1, 1, 0, 0, 0),
-(6, 6, 1, 1, 0, 0, 0),
-(7, 7, 1, 1, 1, 1, 1),
-(8, 8, 1, 1, 1, 1, 1),
+(5, 5, 1, 1, 1, 1, 1),
+(6, 6, 1, 1, 1, 1, 1),
+(7, 7, 1, 1, 0, 0, 0),
+(8, 8, 1, 1, 0, 0, 0),
 (9, 1, 2, 1, 0, 0, 0),
 (10, 2, 2, 0, 0, 0, 0),
 (11, 3, 2, 1, 1, 1, 0),
-(12, 4, 2, 1, 0, 0, 0),
-(13, 5, 2, 1, 1, 1, 0),
-(14, 6, 2, 1, 0, 0, 0),
+(12, 4, 2, 0, 0, 0, 0),
+(13, 5, 2, 0, 0, 0, 0),
+(14, 6, 2, 0, 0, 0, 0),
 (15, 7, 2, 0, 0, 0, 0),
 (16, 8, 2, 0, 0, 0, 0),
-(17, 4, 1, 1, 0, 1, 1);
+(17, 4, 1, 1, 1, 1, 1),
+(18, 8, 3, 1, 1, 1, 1),
+(19, 7, 3, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -213,7 +216,8 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `nombre`, `descripcion`) VALUES
 (1, 'admin', 'Administrador'),
-(2, 'ventas', 'Vendedor');
+(2, 'ventas', 'Vendedor'),
+(3, 'sadmin', 'Super Administrador');
 
 -- --------------------------------------------------------
 
@@ -232,8 +236,7 @@ CREATE TABLE `tipo_cliente` (
 --
 
 INSERT INTO `tipo_cliente` (`id`, `nombre`, `descripcion`) VALUES
-(1, 'Natural', 'Persona natural'),
-(2, 'Jurídica', 'Persona jurídica');
+(1, 'Natural', 'Perona natural');
 
 -- --------------------------------------------------------
 
@@ -299,7 +302,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `nombres`, `apellidos`, `telefono`, `email`, `username`, `password`, `rol_id`, `estado`) VALUES
 (1, 'jaime', 'gomez', '3043803484', 'uno@mail.com', 'dos', NULL, 1, 0),
 (2, 'Luisa Fernanda', 'Serna Ardila', '3135170192', 'luchiserna96@gmail.com', 'lserna', '97fe4a6e7ed1367ab5016b7f516df4a1d0403350', 1, 1),
-(3, 'Daniel', 'Morales Restrepo', '3215467542', 'danitrofus@hotmail.com', 'dmorales', '3c4a80dbdfac57d174d1cab8d11d03ad91888820', 2, 1);
+(3, 'Daniel', 'Morales Restrepo', '3215467542', 'danitrofus@hotmail.com', 'dmorales', '3c4a80dbdfac57d174d1cab8d11d03ad91888820', 2, 1),
+(4, 'Jaime', 'Gómez', '3043803484', 'jaime.gomezho@gmail.com', 'jgomez', 'cb34e0dd356b7cc98b901319ef3d683be705adbb', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -442,7 +446,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_venta`
@@ -460,7 +464,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -472,13 +476,13 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_cliente`
 --
 ALTER TABLE `tipo_cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_comprobante`
@@ -496,7 +500,7 @@ ALTER TABLE `tipo_documento`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
