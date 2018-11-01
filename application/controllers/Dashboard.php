@@ -16,7 +16,7 @@ class Dashboard extends CI_Controller {
 			"cantVentas" => $this->Backend_model->rowCount("ventas"),
 			"cantUsuarios" => $this->Backend_model->rowCount("usuarios"),
 			"cantClientes" => $this->Backend_model->rowCount("clientes"),
-			"cantProductos" => $this->Backend_model->rowCount("Productos"),
+			"cantProductos" => $this->Backend_model->rowCount("productos"),
 			'years' => $this->Ventas_model->years(),
 		);
 		$this->load->view("layouts/header");
