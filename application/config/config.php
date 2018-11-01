@@ -23,9 +23,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-//$config['base_url'] = 'http://csatcn/ventas_ci/';
 $config['base_url'] = 'http://localhost/ventas_ci/';
 //$config['base_url'] = 'http://192.168.1.67/ventas_ci/';
+//$config['base_url'] = 'http://csatcn.com/ventas_ci/';
+//$config['base_url'] = 'http://u593977933.hostingerapp.com/ventas_ci/';
 
 /*
 |--------------------------------------------------------------------------
