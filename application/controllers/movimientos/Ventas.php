@@ -3,8 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Ventas extends CI_Controller {
 
+	private $permisos;
+
 	public function __construct(){
 		parent::__construct();
+		$this->permisos = $this->backend_lib->control();
 		if (!$this->session->userdata("login")) {
 			redirect(base_url());
 		}
@@ -15,6 +18,7 @@ class Ventas extends CI_Controller {
 
 	public function index(){
 		$data  = array(
+			'permisos' => $this->permisos,
 			'ventas' => $this->Ventas_model->getVentas(),
 		);
 		$this->load->view("layouts/header");

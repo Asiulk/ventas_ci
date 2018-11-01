@@ -71,10 +71,10 @@
                                             </td>
 
                                             <td>
-                                                <div class="btn-group">
-                                                    <a href="<?php echo base_url()?>administrador/permisos/edit/<?php echo $permiso->id;?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
-                                                    <a href="<?php echo base_url();?>administrador/permisos/delete/<?php echo $permiso->id;?>" class="btn btn-danger"><span class="fa fa-remove"></span></a>
-                                                </div>
+                                              <div class="btn-group">
+                                                <a href="<?php echo base_url()?>administrador/permisos/edit/<?php echo $permiso->id;?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                                <a href="<?php echo base_url();?>administrador/permisos/delete/<?php echo $permiso->id;?>" class="btn btn-danger"><span class="fa fa-remove"></span></a>
+                                              </div>
                                             </td>
                                         </tr>
                                     <?php endforeach;?>

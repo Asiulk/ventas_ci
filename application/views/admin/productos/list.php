@@ -15,7 +15,9 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
+                      <?php if ($permisos->insert == 1):?>
                         <a href="<?php echo base_url();?>mantenimiento/productos/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Productos</a>
+                      <?php endif; ?>
                     </div>
                 </div>
                 <hr>
@@ -49,13 +51,17 @@
                                             <td><?php echo $producto->categoria;?></td>
                                             <?php $dataproducto = $producto->id."*".$producto->codigo."*".$producto->nombre."*".$producto->descripcion."*".$producto->precio."*".$producto->igv."*".$producto->stock."*".$producto->categoria;?>
                                             <td>
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-info btn-view-producto" data-toggle="modal" data-target="#modal-default" value="<?php echo $dataproducto;?>">
-                                                        <span class="fa fa-search"></span>
-                                                    </button>
-                                                    <a href="<?php echo base_url()?>mantenimiento/productos/edit/<?php echo $producto->id;?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
-                                                    <a href="<?php echo base_url();?>mantenimiento/productos/delete/<?php echo $producto->id;?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
-                                                </div>
+                                              <div class="btn-group">
+                                                  <button type="button" class="btn btn-info btn-view-producto" data-toggle="modal" data-target="#modal-default" value="<?php echo $dataproducto;?>">
+                                                      <span class="fa fa-search"></span>
+                                                  </button>
+                                                <?php if ($permisos->update == 1):?>
+                                                  <a href="<?php echo base_url()?>mantenimiento/productos/edit/<?php echo $producto->id;?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                                <?php endif; ?>
+                                                <?php if ($permisos->delete == 1):?>
+                                                  <a href="<?php echo base_url();?>mantenimiento/productos/delete/<?php echo $producto->id;?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
+                                                <?php endif; ?>
+                                              </div>
                                             </td>
                                         </tr>
                                     <?php endforeach;?>
@@ -82,7 +88,7 @@
         <h4 class="modal-title">Informacion de la Categoria</h4>
       </div>
       <div class="modal-body">
-        
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2018 a las 15:54:45
--- Versión del servidor: 10.1.34-MariaDB
--- Versión de PHP: 7.2.8
+-- Tiempo de generación: 01-11-2018 a las 17:37:13
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -152,18 +152,19 @@ INSERT INTO `permisos` (`id`, `menu_id`, `rol_id`, `read`, `insert`, `update`, `
 (1, 1, 1, 1, 1, 1, 1),
 (3, 2, 1, 1, 1, 1, 1),
 (4, 3, 1, 1, 1, 1, 1),
-(5, 5, 1, 1, 1, 1, 1),
-(6, 6, 1, 1, 1, 1, 1),
+(5, 5, 1, 1, 0, 0, 0),
+(6, 6, 1, 1, 0, 0, 0),
 (7, 7, 1, 1, 1, 1, 1),
 (8, 8, 1, 1, 1, 1, 1),
 (9, 1, 2, 1, 0, 0, 0),
-(10, 2, 2, 1, 0, 0, 0),
+(10, 2, 2, 0, 0, 0, 0),
 (11, 3, 2, 1, 1, 1, 0),
 (12, 4, 2, 1, 0, 0, 0),
 (13, 5, 2, 1, 1, 1, 0),
 (14, 6, 2, 1, 0, 0, 0),
 (15, 7, 2, 0, 0, 0, 0),
-(16, 8, 2, 0, 0, 0, 0);
+(16, 8, 2, 0, 0, 0, 0),
+(17, 4, 1, 1, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -231,7 +232,8 @@ CREATE TABLE `tipo_cliente` (
 --
 
 INSERT INTO `tipo_cliente` (`id`, `nombre`, `descripcion`) VALUES
-(1, 'Natural', 'Perona natural');
+(1, 'Natural', 'Persona natural'),
+(2, 'Jurídica', 'Persona jurídica');
 
 -- --------------------------------------------------------
 
@@ -458,7 +460,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -476,7 +478,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `tipo_cliente`
 --
 ALTER TABLE `tipo_cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_comprobante`

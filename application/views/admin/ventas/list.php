@@ -15,7 +15,9 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
+                      <?php if ($permisos->insert == 1):?>
                         <a href="<?php echo base_url();?>movimientos/ventas/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Venta</a>
+                      <?php endif; ?>
                     </div>
                 </div>
                 <hr>
@@ -45,7 +47,7 @@
                                             <td><?php echo $venta->total;?></td>
                                             <td>
                                                 <button type="button" class="btn btn-info btn-view-venta" value="<?php echo $venta->id;?>" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span></button>
-                                            </td>
+                                          </td>
                                         </tr>
                                     <?php endforeach;?>
                                 <?php endif ?>
@@ -71,7 +73,7 @@
         <h4 class="modal-title">Informacion de la venta</h4>
       </div>
       <div class="modal-body">
-        
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>

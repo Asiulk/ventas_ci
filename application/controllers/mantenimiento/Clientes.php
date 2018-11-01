@@ -3,15 +3,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Clientes extends CI_Controller {
 
+	private $permisos;
+
 	public function __construct(){
 		parent::__construct();
+		$this->permisos = $this->backend_lib->control();
 		$this->load->model("Clientes_model");
 	}
 
 	public function index()
 	{
 		$data  = array(
-			'clientes' => $this->Clientes_model->getClientes(), 
+			'permisos' => $this->permisos,
+			'clientes' => $this->Clientes_model->getClientes(),
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
@@ -47,7 +51,7 @@ class Clientes extends CI_Controller {
 
 		if ($this->form_validation->run()) {
 			$data  = array(
-				'nombre' => $nombre, 
+				'nombre' => $nombre,
 				'tipo_documento_id' => $tipodocumento,
 				'tipo_cliente_id' => $tipocliente,
 				'direccion' => $direccion,
@@ -68,11 +72,11 @@ class Clientes extends CI_Controller {
 			$this->add();
 		}
 
-		
+
 	}
 	public function edit($id){
 		$data  = array(
-			'cliente' => $this->Clientes_model->getCliente($id), 
+			'cliente' => $this->Clientes_model->getCliente($id),
 			"tipoclientes" => $this->Clientes_model->getTipoClientes(),
 			"tipodocumentos" => $this->Clientes_model->getTipoDocumentos()
 		);
@@ -107,7 +111,7 @@ class Clientes extends CI_Controller {
 
 		if ($this->form_validation->run()) {
 			$data = array(
-				'nombre' => $nombre, 
+				'nombre' => $nombre,
 				'tipo_documento_id' => $tipodocumento,
 				'tipo_cliente_id' => $tipocliente,
 				'direccion' => $direccion,
@@ -126,13 +130,13 @@ class Clientes extends CI_Controller {
 			$this->edit($idcliente);
 		}
 
-		
+
 
 	}
 
 	public function delete($id){
 		$data  = array(
-			'estado' => "0", 
+			'estado' => "0",
 		);
 		$this->Clientes_model->update($id,$data);
 		echo "mantenimiento/clientes";

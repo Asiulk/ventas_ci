@@ -15,7 +15,9 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
+                      <?php if ($permisos->insert == 1):?>
                         <a href="<?php echo base_url();?>mantenimiento/clientes/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Clientes</a>
+                      <?php endif; ?>
                     </div>
                 </div>
                 <hr>
@@ -31,7 +33,7 @@
                                     <th>Numero de Documento</th>
                                     <th>Telefono</th>
                                     <th>Direccion</th>
-                                 
+
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
@@ -48,13 +50,17 @@
                                             <td><?php echo $cliente->direccion;?></td>
                                             <?php $datacliente = $cliente->id."*".$cliente->nombre."*".$cliente->tipocliente."*".$cliente->tipodocumento."*".$cliente->num_documento."*".$cliente->telefono."*".$cliente->direccion;?>
                                             <td>
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-info btn-view-cliente" data-toggle="modal" data-target="#modal-default" value="<?php echo $datacliente?>">
-                                                        <span class="fa fa-search"></span>
-                                                    </button>
-                                                    <a href="<?php echo base_url()?>mantenimiento/clientes/edit/<?php echo $cliente->id;?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
-                                                    <a href="<?php echo base_url();?>mantenimiento/clientes/delete/<?php echo $cliente->id;?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
-                                                </div>
+                                              <div class="btn-group">
+                                                <button type="button" class="btn btn-info btn-view-cliente" data-toggle="modal" data-target="#modal-default" value="<?php echo $datacliente?>">
+                                                    <span class="fa fa-search"></span>
+                                                </button>
+                                                <?php if ($permisos->update == 1):?>
+                                                  <a href="<?php echo base_url()?>mantenimiento/clientes/edit/<?php echo $cliente->id;?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                                <?php endif; ?>
+                                                <?php if ($permisos->delete == 1):?>
+                                                  <a href="<?php echo base_url();?>mantenimiento/clientes/delete/<?php echo $cliente->id;?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
+                                                <?php endif; ?>
+                                              </div>
                                             </td>
                                         </tr>
                                     <?php endforeach;?>
@@ -81,7 +87,7 @@
         <h4 class="modal-title">Informacion de la Categoria</h4>
       </div>
       <div class="modal-body">
-        
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>

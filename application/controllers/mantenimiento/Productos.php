@@ -3,8 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Productos extends CI_Controller {
 
+	private $permisos;
+
 	public function __construct(){
 		parent::__construct();
+		$this->permisos = $this->backend_lib->control();
 		$this->load->model("Productos_model");
 		$this->load->model("Categorias_model");
 	}
@@ -12,7 +15,8 @@ class Productos extends CI_Controller {
 	public function index()
 	{
 		$data  = array(
-			'productos' => $this->Productos_model->getProductos(), 
+			'permisos' => $this->permisos,
+			'productos' => $this->Productos_model->getProductos(),
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
@@ -21,7 +25,7 @@ class Productos extends CI_Controller {
 
 	}
 	public function add(){
-		$data =array( 
+		$data =array(
 			"categorias" => $this->Categorias_model->getCategorias()
 		);
 		$this->load->view("layouts/header");
@@ -46,7 +50,7 @@ class Productos extends CI_Controller {
 
 		if ($this->form_validation->run()) {
 			$data  = array(
-				'codigo' => $codigo, 
+				'codigo' => $codigo,
 				'nombre' => $nombre,
 				'descripcion' => $descripcion,
 				'precio' => $precio,
@@ -68,11 +72,11 @@ class Productos extends CI_Controller {
 			$this->add();
 		}
 
-		
+
 	}
 
 	public function edit($id){
-		$data =array( 
+		$data =array(
 			"producto" => $this->Productos_model->getProducto($id),
 			"categorias" => $this->Categorias_model->getCategorias()
 		);
@@ -109,7 +113,7 @@ class Productos extends CI_Controller {
 
 		if ($this->form_validation->run()) {
 			$data  = array(
-				'codigo' => $codigo, 
+				'codigo' => $codigo,
 				'nombre' => $nombre,
 				'descripcion' => $descripcion,
 				'precio' => $precio,
@@ -128,11 +132,11 @@ class Productos extends CI_Controller {
 			$this->edit($idproducto);
 		}
 
-		
+
 	}
 	public function delete($id){
 		$data  = array(
-			'estado' => "0", 
+			'estado' => "0",
 		);
 		$this->Productos_model->update($id,$data);
 		echo "mantenimiento/productos";
