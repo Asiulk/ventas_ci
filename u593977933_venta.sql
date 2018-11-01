@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2018 a las 22:15:49
+-- Tiempo de generación: 01-11-2018 a las 15:54:45
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.8
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `ventas_ci`
+-- Base de datos: `u593977933_venta`
 --
 
 -- --------------------------------------------------------
@@ -94,7 +94,13 @@ INSERT INTO `detalle_venta` (`id`, `producto_id`, `venta_id`, `precio`, `cantida
 (4, 5, 3, '2000', '1', '2000'),
 (5, 4, 3, '20000', '1', '23800'),
 (6, 5, 4, '2000', '3', '6000'),
-(7, 1, 4, '19000', '1', '22610');
+(7, 1, 4, '19000', '1', '22610'),
+(8, 1, 5, '19000', '1', '22610'),
+(9, 3, 6, '22000', '1', '26180'),
+(10, 5, 7, '2000', '1', '2000'),
+(11, 5, 8, '2000', '1', '2000'),
+(12, 1, 8, '19000', '1', '22610'),
+(13, 6, 8, '8000', '1', '8000');
 
 -- --------------------------------------------------------
 
@@ -113,8 +119,14 @@ CREATE TABLE `menus` (
 --
 
 INSERT INTO `menus` (`id`, `nombre`, `link`) VALUES
-(1, 'ventas', '1'),
-(2, '', '');
+(1, 'Inicio', 'dashboard'),
+(2, 'Categorias', 'mantenimiento/categorias'),
+(3, 'Clientes', 'mantenimiento/clientes'),
+(4, 'Productos', 'mantenimiento/productos'),
+(5, 'Ventas', 'movimientos/ventas'),
+(6, 'reportes', 'reportes/ventas'),
+(7, 'Usuarios', 'administrador/usuarios'),
+(8, 'Permisos', 'administrador/permisos');
 
 -- --------------------------------------------------------
 
@@ -137,7 +149,21 @@ CREATE TABLE `permisos` (
 --
 
 INSERT INTO `permisos` (`id`, `menu_id`, `rol_id`, `read`, `insert`, `update`, `delete`) VALUES
-(1, 1, 1, 1, 1, 1, 1);
+(1, 1, 1, 1, 1, 1, 1),
+(3, 2, 1, 1, 1, 1, 1),
+(4, 3, 1, 1, 1, 1, 1),
+(5, 5, 1, 1, 1, 1, 1),
+(6, 6, 1, 1, 1, 1, 1),
+(7, 7, 1, 1, 1, 1, 1),
+(8, 8, 1, 1, 1, 1, 1),
+(9, 1, 2, 1, 0, 0, 0),
+(10, 2, 2, 1, 0, 0, 0),
+(11, 3, 2, 1, 1, 1, 0),
+(12, 4, 2, 1, 0, 0, 0),
+(13, 5, 2, 1, 1, 1, 0),
+(14, 6, 2, 1, 0, 0, 0),
+(15, 7, 2, 0, 0, 0, 0),
+(16, 8, 2, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -162,11 +188,11 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `codigo`, `nombre`, `descripcion`, `precio`, `igv`, `stock`, `categoria_id`, `estado`) VALUES
-(1, 'r01', 'cable velocimetro boxer', 'boxer, platino', '19000', 19, 6, 1, 1),
-(3, 'r02', 'cable velocimetro pulsar', 'pulsar', '22000', 19, 5, 1, 1),
+(1, 'r01', 'cable velocimetro boxer', 'boxer, platino', '19000', 19, 4, 1, 1),
+(3, 'r02', 'cable velocimetro pulsar', 'pulsar', '22000', 19, 4, 1, 1),
 (4, 'r03', 'cable acelearador boxer', 'cable acelerador boxer', '20000', 19, 8, 1, 1),
-(5, 'm01', 'Cambio Aceite', 'Cambio de aceite sencillo', '2000', 0, 999999995, 2, 1),
-(6, 'm001', 'Cambio cable velocimetro Boxer', 'Cambio cable velocimetro Boxer', '8000', 0, 999, 1, 1);
+(5, 'm01', 'Cambio Aceite', 'Cambio de aceite sencillo', '2000', 0, 999999993, 2, 1),
+(6, 'm001', 'Cambio cable velocimetro Boxer', 'Cambio cable velocimetro Boxer', '8000', 0, 998, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -185,7 +211,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `nombre`, `descripcion`) VALUES
-(1, 'admin', 'Administrador');
+(1, 'admin', 'Administrador'),
+(2, 'ventas', 'Vendedor');
 
 -- --------------------------------------------------------
 
@@ -224,7 +251,7 @@ CREATE TABLE `tipo_comprobante` (
 --
 
 INSERT INTO `tipo_comprobante` (`id`, `nombre`, `cantidad`, `serie`) VALUES
-(1, 'Factura', 5, 1);
+(1, 'Factura', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -269,7 +296,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombres`, `apellidos`, `telefono`, `email`, `username`, `password`, `rol_id`, `estado`) VALUES
 (1, 'jaime', 'gomez', '3043803484', 'uno@mail.com', 'dos', NULL, 1, 0),
-(2, 'Luisa Fernanda', 'Serna Ardila', '3135170192', 'luchiserna96@gmail.com', 'lserna', '97fe4a6e7ed1367ab5016b7f516df4a1d0403350', 1, 1);
+(2, 'Luisa Fernanda', 'Serna Ardila', '3135170192', 'luchiserna96@gmail.com', 'lserna', '97fe4a6e7ed1367ab5016b7f516df4a1d0403350', 1, 1),
+(3, 'Daniel', 'Morales Restrepo', '3215467542', 'danitrofus@hotmail.com', 'dmorales', '3c4a80dbdfac57d174d1cab8d11d03ad91888820', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -299,7 +327,11 @@ INSERT INTO `ventas` (`id`, `fecha`, `subtotal`, `igv`, `descuento`, `total`, `t
 (1, '2018-10-03', '19000.00', '3610.00', '0.00', '22610.00', 1, 1, 1, '000002', '1'),
 (2, '2018-10-04', '58000.00', '11020.00', '0.00', '69020.00', 1, 1, 1, '000003', '1'),
 (3, '2016-10-04', '22000.00', '3800.00', '0.00', '25800.00', 1, 1, 1, '000004', '1'),
-(4, '2017-10-04', '25000.00', '3610.00', '0.00', '28610.00', 1, 2, 1, '000005', '1');
+(4, '2017-10-04', '25000.00', '3610.00', '0.00', '28610.00', 1, 2, 1, '000005', '1'),
+(5, '2017-12-27', '19000.00', '3610.00', '0.00', '22610.00', 1, 1, 2, '000006', '1'),
+(6, '2017-11-07', '22000.00', '4180.00', '0.00', '26180.00', 1, 1, 2, '000007', '1'),
+(7, '2018-10-31', '2000.00', '0.00', '0.00', '2000.00', 1, 2, 2, '000008', '1'),
+(8, '2018-10-31', '29000.00', '3610.00', '0.00', '32610.00', 1, 1, 2, '000009', '1');
 
 --
 -- Índices para tablas volcadas
@@ -414,19 +446,19 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -438,7 +470,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_cliente`
@@ -462,13 +494,13 @@ ALTER TABLE `tipo_documento`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
