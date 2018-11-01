@@ -3,14 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Permisos extends CI_Controller {
 
+	private $permisosValidar; //Esta es la variable si el permiso es 0 o 1, para no cambiar el otro $Validar
+
 	public function __construct(){
 		parent::__construct();
+		$this->permisosValidar = $this->backend_lib->control();
 		$this->load->model("Permisos_model");
 		$this->load->model("Usuarios_model");
 	}
 
   public function index(){
     $data  = array(
+			'permisosValidar' => $this->permisosValidar,
       'permisos' => $this->Permisos_model->getPermisos(),
     );
     $this->load->view("layouts/header");
