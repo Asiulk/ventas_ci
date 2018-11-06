@@ -113,7 +113,6 @@ $(document).ready(function () {
     });
 
     $('#example').DataTable( {
-      "order":[[0,"desc"]],
         dom: 'Bfrtip',
         buttons: [
             {
@@ -151,7 +150,6 @@ $(document).ready(function () {
     });
 
 	$('#example1').DataTable({
-    "order":[[0,"desc"]],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por pagina",
             "zeroRecords": "No se encontraron resultados en su busqueda",
