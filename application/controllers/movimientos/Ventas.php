@@ -55,7 +55,6 @@ class Ventas extends CI_Controller {
 		$idusuario = $this->session->userdata("id");
 		$numero = $this->input->post("numero");
 		$serie = $this->input->post("serie");
-
 		$idproductos = $this->input->post("idproductos");
 		$precios = $this->input->post("precios");
 		$cantidades = $this->input->post("cantidades");

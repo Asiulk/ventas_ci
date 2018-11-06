@@ -22,7 +22,10 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
     folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/template/dist/css/skins/_all-skins.css">
+    <!-- Preloader-->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/template/dist/css/carga/carga.css">
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">

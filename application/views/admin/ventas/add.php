@@ -1,4 +1,6 @@
-
+<div id="contenedor_carga">
+  <div id="carga"></div>
+</div>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -15,20 +17,20 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
-                        
+
                         <form action="<?php echo base_url();?>movimientos/ventas/store" method="POST" class="form-horizontal">
                             <div class="form-group">
                                 <div class="col-md-3">
                                     <label for="">Comprobante:</label>
                                     <select name="comprobantes" id="comprobantes" class="form-control" required>
                                         <option value="">Seleccione...</option>
-                                        <?php foreach($tipocomprobantes as $tipocomprobante):?> 
+                                        <?php foreach($tipocomprobantes as $tipocomprobante):?>
                                             <?php $datacomprobante = $tipocomprobante->id."*".$tipocomprobante->cantidad."*".$tipocomprobante->serie;?>
                                             <option value="<?php echo $datacomprobante;?>"><?php echo $tipocomprobante->nombre?></option>
                                         <?php endforeach;?>
                                     </select>
                                     <input type="hidden" id="idcomprobante" name="idcomprobante">
-                                    
+
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Serie:</label>
@@ -38,7 +40,7 @@
                                     <label for="">Numero:</label>
                                     <input type="text" class="form-control" id="numero" name="numero" readonly>
                                 </div>
-                                 
+
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6">
@@ -50,7 +52,7 @@
                                             <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default" ><span class="fa fa-search"></span> Buscar</button>
                                         </span>
                                     </div><!-- /input-group -->
-                                </div> 
+                                </div>
                                 <div class="col-md-3">
                                     <label for="">Fecha:</label>
                                     <input type="date" class="form-control" name="fecha" required>
@@ -82,7 +84,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                
+
                                 </tbody>
                             </table>
 
@@ -112,12 +114,12 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-success btn-flat">Guardar</button>
                                 </div>
-                                
+
                             </div>
                         </form>
                     </div>
