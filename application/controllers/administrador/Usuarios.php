@@ -127,7 +127,7 @@ class Usuarios extends CI_Controller {
   			}
   		}
   		else{
-  			/*redirect(base_url()."mantenimiento/categorias/add");*/
+  			redirect(base_url()."mantenimiento/categorias/add");
   			$this->edit();
   		}
 
